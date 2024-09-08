@@ -1,9 +1,11 @@
 // import { useState } from 'react'
+// import Navigation from "./components/Navigation/Navigation";
+// import { Route, Routes } from 'react-router-dom';
 
-import "./App.css";
+import './App.css';
 
 function App() {
-  return <></>;
+  return <div></div>;
 }
 
 export default App;
