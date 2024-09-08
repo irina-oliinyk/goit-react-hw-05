@@ -21,12 +21,15 @@
 
 .nav {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  width: 1000px;
+  list-style: none;
+
+  font-size: 25px;
+  gap: 30px;
 }
 
 .link {
-  color: var(--color-light);
+  color: red;
   font-size: var(--font-medium);
   font-weight: 700;
 
@@ -41,7 +44,8 @@
 
 .active {
   composes: link;
-  color: var(--color-white);
+
+  color: blueviolet;
   background-color: var(--color-accent);
 
   padding: 6px 12px;
@@ -53,5 +57,5 @@
 
 .link:hover,
 .link:focus {
-  color: var(--color-white);
+  color: rgb(20, 17, 23);
 }
