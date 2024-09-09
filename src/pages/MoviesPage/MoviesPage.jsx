@@ -1,9 +1,10 @@
 import css from './MoviesPage.module.css';
 import { Toaster } from 'react-hot-toast';
-import { useSearchParams, Link, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { searchMovie } from '../../searchApi';
+import MovieList from '../../components/MovieList/MovieList';
 
 export default function MoviesPage() {
   const [params, setParams] = useSearchParams();
@@ -11,7 +12,7 @@ export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const query = params.get('query');
-  const location = useLocation();
+  // const location = useLocation();
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -65,8 +66,15 @@ export default function MoviesPage() {
       </header>
       {loading && <Loader />}
       {error && <Toaster position="top-right" reverseOrder={false} />}
+      {loading ? (
+        <Loader />
+      ) : movies.length > 0 ? (
+        <MovieList trendsMovie={movies} />
+      ) : (
+        <p className={css.p}>Please enter your request.</p>
+      )}
 
-      {movies.length > 0 && (
+      {/* {movies.length > 0 && (
         <ul className={css.list}>
           {movies.map(movie => (
             <li key={movie.id}>
@@ -76,7 +84,7 @@ export default function MoviesPage() {
             </li>
           ))}
         </ul>
-      )}
+      )} */}
     </div>
   );
 }

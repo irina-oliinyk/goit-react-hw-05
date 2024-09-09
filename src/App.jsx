@@ -17,7 +17,7 @@ const Navigation = lazy(() => import('.//components/Navigation/Navigation'));
 function App() {
   return (
     <div>
-      <Suspense>
+      <Suspense fallback={<div>LOADING PAGE...</div>}>
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />

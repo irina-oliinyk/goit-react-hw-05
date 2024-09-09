@@ -23,3 +23,9 @@
 .header {
   margin-top: 15px;
 }
+
+.p {
+  font-size: 25px;
+  margin-left: 25px;
+  color: black;
+}
