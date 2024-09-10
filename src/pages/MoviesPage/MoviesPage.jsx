@@ -1,10 +1,10 @@
 import css from './MoviesPage.module.css';
-import { Toaster } from 'react-hot-toast';
 import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
 import { useState, useEffect } from 'react';
 import { searchMovie } from '../../searchApi';
 import MovieList from '../../components/MovieList/MovieList';
+import ErrorMesange from '../../components/ErrorMesange/ErrorMesange';
 
 export default function MoviesPage() {
   const [params, setParams] = useSearchParams();
@@ -37,11 +37,11 @@ export default function MoviesPage() {
           setMovies(response.data.results);
         }
       } catch (error) {
-        setError(error);
+        setError(error.message);
+
         console.log(error);
       } finally {
         setLoading(false);
-        setError(null);
       }
     }
     getMoviesByQuery();
@@ -65,26 +65,8 @@ export default function MoviesPage() {
         </form>
       </header>
       {loading && <Loader />}
-      {error && <Toaster position="top-right" reverseOrder={false} />}
-      {loading ? (
-        <Loader />
-      ) : movies.length > 0 ? (
-        <MovieList trendsMovie={movies} />
-      ) : (
-        <p className={css.p}>Please enter your request.</p>
-      )}
-
-      {/* {movies.length > 0 && (
-        <ul className={css.list}>
-          {movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`} state={location}>
-                <h3 className={css.title}>{movie.title}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )} */}
+      {error && <ErrorMesange />}
+      {movies.length > 0 && <MovieList trendsMovie={movies} />}
     </div>
   );
 }
